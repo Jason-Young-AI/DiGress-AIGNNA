@@ -3,13 +3,13 @@ defaults:
     - general : general_default
     - model : discrete
     - train : train_default
-    - dataset : qm9
+    - dataset : younger
 
 hydra:
   job:
     chdir: True
   run:
-    dir: ../outputs/${now:%Y-%m-%d}/${now:%H-%M-%S}-${general.name}
+    dir: /younger/NIPS2024/DiGress/outputs/${now:%Y-%m-%d}/${now:%H-%M-%S}-${general.name}
 
 
 

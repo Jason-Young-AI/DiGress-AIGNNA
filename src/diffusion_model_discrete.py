@@ -117,6 +117,7 @@ class DiscreteDenoisingDiffusion(pl.LightningModule):
         self.train_metrics(masked_pred_X=pred.X, masked_pred_E=pred.E, true_X=X, true_E=E,
                            log=i % self.log_every_steps == 0)
 
+        print(loss)
         return {'loss': loss}
 
     def configure_optimizers(self):

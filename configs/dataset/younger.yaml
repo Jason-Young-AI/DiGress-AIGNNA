@@ -1,0 +1,15 @@
+name: 'younger'            # qm9, qm9_positional
+random_subset: null
+pin_memory: False
+
+train_dataset_dirpath : "/younger/younger/silly_splited_filtered_instances/2024-05-29-14-14-50/initial_nl30_el30_nu200_eu300/train"
+valid_dataset_dirpath : "/younger/younger/silly_splited_filtered_instances/2024-05-29-14-14-50/initial_nl30_el30_nu200_eu300/valid"
+test_dataset_dirpath : "/younger/younger/silly_splited_filtered_instances/2024-05-29-14-14-50/initial_nl30_el30_nu200_eu300/test"
+
+# train_dataset_dirpath : "/data/jason/Younger/applications/process_datasets/silly_splited_filtered_dataset/initial_nl30_el30_nu4000_eu4000_v0.0.1/train"
+# valid_dataset_dirpath : "/data/jason/Younger/applications/process_datasets/silly_splited_filtered_dataset/initial_nl30_el30_nu4000_eu4000_v0.0.1/valid"
+# test_dataset_dirpath :  "/data/jason/Younger/applications/process_datasets/silly_splited_filtered_dataset/initial_nl30_el30_nu4000_eu4000_v0.0.1/test"
+node_dict_size: 6000
+task_dict_size: 40
+worker_number: 32
+seed: 12345

@@ -147,6 +147,28 @@ def main(cfg: DictConfig):
         model_kwargs = {'dataset_infos': dataset_infos, 'train_metrics': train_metrics,
                         'sampling_metrics': sampling_metrics, 'visualization_tools': visualization_tools,
                         'extra_features': extra_features, 'domain_features': domain_features}
+    elif dataset_config["name"] in ['younger']:
+        from datasets.younger_dataset import YoungerDataModule, YoungerDatasetInfos
+        from analysis.spectre_utils import YoungerSamplingMetrics
+        from analysis.visualization import NonMolecularVisualization
+
+        datamodule = YoungerDataModule(cfg)
+        if dataset_config['name'] == 'younger':
+            sampling_metrics = YoungerSamplingMetrics(datamodule)
+
+        dataset_infos = YoungerDatasetInfos(datamodule, dataset_config)
+        train_metrics = TrainAbstractMetricsDiscrete() if cfg.model.type == 'discrete' else TrainAbstractMetrics()
+        visualization_tools = NonMolecularVisualization()
+
+        extra_features = DummyExtraFeatures()
+        domain_features = DummyExtraFeatures()
+
+        dataset_infos.compute_input_output_dims(datamodule=datamodule, extra_features=extra_features,
+                                                domain_features=domain_features)
+
+        model_kwargs = {'dataset_infos': dataset_infos, 'train_metrics': train_metrics,
+                        'sampling_metrics': sampling_metrics, 'visualization_tools': visualization_tools,
+                        'extra_features': extra_features, 'domain_features': domain_features}
     else:
         raise NotImplementedError("Unknown dataset {}".format(cfg["dataset"]))
 
